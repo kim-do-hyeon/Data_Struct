@@ -53,6 +53,15 @@ TNode* search(TNode *n, int key)
     else    return search(n -> right, key);
 }
 ```
+```Python
+# Logical Python #
+
+def find(self, val):
+        if (self.findNode(self.root, val) is False):
+            return False
+        else:
+            return True
+```
 
 ### 반복적인 구현
 ```C
@@ -68,6 +77,18 @@ TNode* search_iter(TNode *n, int key)
     }
     return NULL;
 }
+```
+```Python
+# Logical Python #
+def findNode(self, currentNode, val):
+        if (currentNode is None):
+            return False
+        elif (val == currentNode.val):
+            return currentNode
+        elif (val < currentNode.val):
+            return self.findNode(currentNode.leftChild, val)
+        else:
+            return self.findNode(currentNode.rightChild, val)
 ```
 
 # 삽입연산
