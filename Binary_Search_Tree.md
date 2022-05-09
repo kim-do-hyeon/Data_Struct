@@ -17,3 +17,55 @@
 <img width="644" alt="Pasted Graphic 2" src="https://user-images.githubusercontent.com/21982942/167353611-2c1fee28-732f-4058-801e-d163243bf8b2.png">
 
 - 기본 연산은 이진트리와 동일하다.
+
+# 탐색연산
+- 비교한 결과가 같으면 탐색이 성공적으로 끝난다.
+- 키 값이 루트보다 작으면 -> 왼쪽 자신을 기준으로 다시 탐색
+- 키 값이 루트보다 크면 -> 오른쪽 자식을 기준으로 다시 탐색
+
+<img width="530" alt="image" src="https://user-images.githubusercontent.com/21982942/167364152-7d3d6840-56bf-4de7-93f4-fc13bc142022.png">
+
+
+```
+# Logical #
+
+function search(root, key)
+
+if root = NULL
+    then return NULL;
+if key = KEY(root)
+    then return root;
+    else if key < KEY(root)
+        then return serach(LEFT(root), key);
+        else
+            return search(RIGHT(root), key);
+```
+
+### 순환적인 구현
+```C
+# Logical C #
+
+TNode* search(TNode *n, int key)
+{
+    if(n == NULL)   return NULL;
+    else if(key == n -> data)   return n;
+    else if(key < n -> data)    return search(n -> left, key);
+    else    return search(n -> right, key);
+}
+```
+
+### 반복적인 구현
+```C
+# Logical C #
+
+TNode* search_iter(TNode *n, int key)
+{
+    while(n != NULL)
+    {
+        if(key == n -> data)    return n;
+        else if(key < n-> data)     n = node -> left;
+        else    n = node -> right;
+    }
+    return NULL;
+}
+```
