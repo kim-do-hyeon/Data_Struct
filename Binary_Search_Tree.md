@@ -69,3 +69,56 @@ TNode* search_iter(TNode *n, int key)
     return NULL;
 }
 ```
+
+# 삽입연산
+- 먼저 탐색을 수행하며, 탐색에 실패한 위치가 바로 새로운 노드를 삽입하는 위치이다.
+
+<img width="530" alt="image" src="https://user-images.githubusercontent.com/21982942/167364119-dd210de6-e5d7-4c4c-a72a-5520c735d4a3.png">
+
+```
+# Logical #
+
+function insert(root, n)
+
+if KEY(n) = kEY(root)
+    then return;
+else if KEY(n) < KEY(root) then
+    if LEFT(root) = NULL
+        then LEFT(root) <- n;
+        else insert(LEFT(root), n);
+else
+    if RIGHT(root) = NULL
+        then RIGHT(root) <- n;
+        else insert(RIGHT(root), n);
+```
+
+```C
+# Logical C #
+
+void insert(TNode *r, TNode *n)
+{
+    if(n -> data == r ->data) return;
+    else if(n -> data < r -> data)
+    {
+        if(r -> left == NULL)
+        {
+            r -> left = n;
+        }
+        else
+        {
+            insert(r -> left, n);
+        }
+    }
+    else
+    {
+        if(r -> right == NULL)
+        {
+            r -> right = n;
+        }
+        else
+        {
+            insert(r -> right, n);
+        }
+    }
+}
+```
