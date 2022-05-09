@@ -143,3 +143,24 @@ void insert(TNode *r, TNode *n)
     }
 }
 ```
+```Python
+# Logical Python #
+
+def insert(self, val):
+        if (self.root is None):
+            self.setRoot(val)
+        else:
+            self.insertNode(self.root, val)
+
+def insertNode(self, currentNode, val):
+    if (val <= currentNode.val):
+        if (currentNode.leftChild):
+            self.insertNode(currentNode.leftChild, val)
+        else:
+            currentNode.leftChild = Node(val)
+    elif (val > currentNode.val):
+        if (currentNode.rightChild):
+            self.insertNode(currentNode.rightChild, val)
+        else:
+            currentNode.rightChild = Node(val)
+```
