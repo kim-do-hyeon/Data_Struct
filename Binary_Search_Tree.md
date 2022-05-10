@@ -235,6 +235,23 @@ else{
 }
 ```
 
+```python
+# Logical Python #
+
+def traverse(self):
+        return self.traverseNode(self.root)
+
+def traverseNode(self, currentNode):
+    result = []
+    if (currentNode.leftChild is not None):
+        result.extend(self.traverseNode(currentNode.leftChild))
+    if (currentNode is not None):
+        result.extend([currentNode.val])
+    if (currentNode.rightChild is not None):
+        result.extend(self.traverseNode(currentNode.rightChild))
+    return result
+```
+
 # 이진 탐색 트리의 성능
 - 이진 탐색 트리에서의 탐색, 삽입, 삭제 연산의 시간 복잡도는 트리의 높이를 h라고 했을때, h와 비례한다.
 
