@@ -164,3 +164,72 @@ def insertNode(self, currentNode, val):
         else:
             currentNode.rightChild = Node(val)
 ```
+
+# 삭제연산
+- 이진탐색트리에서의 삭제 연산은 복잡하다.
+<br>
+- 노드 삭제의 3가지 경우
+> 삭제하려는 노드가 단말 노드일 경우 <br>
+> 삭제하려는 노드가 하나의 왼쪽이나 오론쪽 서브 트리중 하나만 가지고 있는 경우<br>
+> 삭제하려는 노드가 두개의 서브 트리 모두 가지고 있는 경우<br>
+
+## 케이스 1 : 단말 노드의 삭제
+- 단말 노드의 부모 노드를 찾아서 연결을 끊으면 된다.
+<img width="526" alt="image" src="https://user-images.githubusercontent.com/21982942/167577913-00b73f91-8c28-4481-a0b2-7418070aa871.png">
+
+```
+# Logical #
+if((node -> left == NULL && node -> right == NULL)){
+    if(parent == NULL) root = NULL;
+    else {
+        if(parent -> left == node)
+            parent -> left = NULL;
+        else parent -> right = NULL;
+    }
+}
+```
+
+## 케이스 2 : 자식이 하나인 노드 삭제
+- 노드는 삭제하고 서브 트리는 부모 노드에 붙여준다.
+<img width="526" alt="image" src="https://user-images.githubusercontent.com/21982942/167578213-5a851dca-2ec6-4d82-90e8-431f178a76de.png">
+
+```
+# Logical #
+if(node -> left == NULL || node -> right == NULL){
+    child = (node -> left != NULL) ? node -> left : node -> right;
+    if(node == root) root = child;
+    else{
+        if(parent -> left == node)
+            parent -> left = child;
+        else parent -> right = child;
+    }
+}
+```
+
+## 케이스 3 : 두 개의 자식을 가진 노드 삭제
+- 가장 비슷한 값을 가진 노드를 삭제 노드 위치로 가져온다.
+- 후계 노드의 선택
+<img width="651" alt="image" src="https://user-images.githubusercontent.com/21982942/167578679-a24fdb52-76aa-4d13-8d59-27311b65d576.png">
+
+```
+if((node -> left == NULL) && node -> right == NULL){
+    case 1
+}
+else if((node -> left == NULL && node -> right == NULL)){
+    case 2
+}
+else{
+    succp = node ;
+    succ = node -> right;
+    while(succ -> left != NULL){
+        succp = succ;
+        succ = succ -> left;
+    }
+    if(succp -> left == succ){
+        succp -> left = succ -> right;
+    }
+    else succp -> right = succ -> right;
+
+    node -> data = succ -> data;
+    node = succ;
+}
